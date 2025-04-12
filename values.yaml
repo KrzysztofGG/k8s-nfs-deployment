@@ -1,0 +1,4 @@
+provisioner:
+  storageClass:
+    name: nfs-storage-class  # Set your desired StorageClass name here
+

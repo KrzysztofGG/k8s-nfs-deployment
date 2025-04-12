@@ -1,0 +1,24 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: nfs-content-loader
+spec:
+  template:
+    spec:
+      restartPolicy: OnFailure
+      containers:
+        - name: content-loader
+          image: busybox
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              echo '<html><body><h1>Hello from NFS!</h1></body></html>' > /mnt/nfs/index.html;
+              echo 'Sample content created in shared NFS volume.';
+          volumeMounts:
+            - name: shared-nfs
+              mountPath: /mnt/nfs
+      volumes:
+        - name: shared-nfs
+          persistentVolumeClaim:
+            claimName: my-nfs-pvc
+
