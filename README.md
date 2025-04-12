@@ -13,6 +13,7 @@
 ```bash
 helm repo add nfs-ganesha-server-and-external-provisioner https://kubernetes-sigs.github.io/nfs-ganesha-server-and-external-provisioner/
 helm repo update
+```
 
 2. **Install NFS Ganesha Provisioner**
 
@@ -30,6 +31,7 @@ kubectl apply -f nfs-content-loader-job.
 ```
 
 4. **Acess the nginx server**
+
 ```bash
 kubectl port-forward service/nginx-nfs 8080:80
 curl http://localhost:8080
